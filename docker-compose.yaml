@@ -16,21 +16,24 @@ services:
     - "./nginx_lua/:/opt/app/"
     - "./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
   auth:
-    image: jboss/keycloak
+    image: jboss/keycloak:16.1.1
     ports:
     - "8080:8080"
     environment:
-    - "KEYCLOAK_USER=dalong"
-    - "KEYCLOAK_PASSWORD=dalongrong"
-    - "DB_VENDOR=postgres"
-    - "DB_ADDR=postgres"
-    - "DB_DATABASE=postgres"
-    - "DB_USER=postgres"
-    - "DB_PASSWORD=dalong"
-    - "PROXY_ADDRESS_FORWARDING=true"
-  postgres:
-    image: postgres:9.6
-    ports:
-    - "5432:5432"
-    environment:
-    - "POSTGRES_PASSWORD:dalong"
+    # 初始化密码
+    - KEYCLOAK_USER=admin
+    - KEYCLOAK_PASSWORD=admin
+    # - "DB_VENDOR=postgres"
+    # - "DB_ADDR=postgres"
+    # - "DB_DATABASE=postgres"
+    # - "DB_USER=postgres"
+    # - "DB_PASSWORD=dalong"
+    # - "PROXY_ADDRESS_FORWARDING=true"
+  #   depends_on:
+  #   - postgres
+  # postgres:
+  #   image: postgres:9.6
+  #   ports:
+  #   - "5432:5432"
+  #   environment:
+  #   - "POSTGRES_PASSWORD:dalong"
